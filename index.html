@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Davidson Akra, senior full-stack engineer. I build AI features for real products, plus the guardrails that make them safe to run.">
+<meta property="og:title" content="Davidson Akra">
+<meta property="og:description" content="Senior full-stack engineer building AI features for real products.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://davidson-09.github.io/">
+<title>Davidson Akra</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  html { color-scheme: light; } body { margin: 0; } img { max-width: 100%; } [hidden] { display: none !important; }
+  /* Layout: a spec sheet. Mono labels sit in a left rail, content reads in one column beside it; the rail folds on top at phone width. */
+  :root {
+    --paper: #f5f6f2;
+    --ink: #15171c;
+    --muted: #5b616b;
+    --rule: #dcdfd6;
+    --card: #ffffff;
+    --accent: #2743c9;
+    --marker: #fbe68a;
+    --chip: #e9ecf8;
+    --display: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+    --body: "IBM Plex Sans", -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+    --paper: #111318; --ink: #eceef2; --muted: #9aa0ab; --rule: #262a33; --card: #181b22;
+    --accent: #93a6ff; --marker: #5a4c12; --chip: #1f2536; color-scheme: dark; } }
+  :root[data-theme="dark"] {
+    --paper: #111318; --ink: #eceef2; --muted: #9aa0ab; --rule: #262a33; --card: #181b22;
+    --accent: #93a6ff; --marker: #5a4c12; --chip: #1f2536; color-scheme: dark; }
+
+  * { box-sizing: border-box; }
+  body { background: var(--paper); color: var(--ink); font: 400 1.0625rem/1.65 var(--body); }
+  .wrap { max-width: 68rem; margin: 0 auto; padding-inline: max(16px, 4vw); padding-block: 3.5rem 5rem; }
+  a { color: var(--accent); text-underline-offset: 3px; }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+  h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; }
+  p { margin: 0; }
+  mark { background: linear-gradient(transparent 55%, var(--marker) 55%); color: inherit; padding: 0 .1em; }
+
+  .label { font: 500 .75rem/1.4 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+
+  /* Hero */
+  .hero { display: grid; gap: 1.5rem; padding-bottom: 3rem; border-bottom: 1px solid var(--rule); }
+  .hero h1 { font-size: clamp(2.75rem, 8vw, 5.5rem); font-weight: 800; line-height: .95; letter-spacing: -.02em; }
+  .hero .role { font: 500 1.05rem/1.4 var(--mono); color: var(--accent); }
+  .hero .thesis { font: 500 clamp(1.3rem, 2.6vw, 1.75rem)/1.35 var(--display); max-width: 34ch; }
+  .hero .intro { max-width: 62ch; color: var(--muted); }
+  .links { display: flex; flex-wrap: wrap; gap: .6rem; }
+  .links a, .copy { font: 500 .9rem/1 var(--mono); display: inline-flex; align-items: center; gap: .5rem;
+    padding: .7rem .95rem; border: 1px solid var(--rule); border-radius: 999px; background: var(--card);
+    color: var(--ink); text-decoration: none; cursor: pointer; }
+  .links a:hover, .copy:hover { border-color: var(--accent); color: var(--accent); }
+  .copy .addr { user-select: all; }
+
+  /* Sections with a label rail */
+  section { display: grid; grid-template-columns: 11rem minmax(0, 1fr); gap: 2rem; padding-block: 3rem; border-bottom: 1px solid var(--rule); }
+  section > .label { padding-top: .45rem; }
+  @media (max-width: 760px) { section { grid-template-columns: minmax(0, 1fr); gap: 1rem; } }
+  .stack { display: grid; gap: 1.25rem; min-width: 0; }
+  h2 { font-size: clamp(1.6rem, 3.4vw, 2.3rem); font-weight: 700; line-height: 1.1; letter-spacing: -.01em; }
+  .lede { max-width: 62ch; color: var(--muted); }
+
+  /* Featured pipeline */
+  .pipe { display: flex; flex-wrap: wrap; align-items: stretch; gap: .5rem; padding: 1.1rem; border-radius: 14px;
+    background: var(--card); border: 1px solid var(--rule); }
+  .step { flex: 1 1 8.5rem; min-width: 0; padding: .75rem .85rem; border-radius: 10px; background: var(--chip); }
+  .step b { display: block; font: 600 .95rem/1.3 var(--body); }
+  .step span { display: block; font: 400 .8rem/1.4 var(--mono); color: var(--muted); margin-top: .25rem; }
+  .step.guard { background: transparent; outline: 1.5px dashed var(--accent); outline-offset: -1.5px; }
+  .arrow { align-self: center; font: 500 1rem var(--mono); color: var(--muted); }
+  @media (max-width: 760px) { .arrow { display: none; } }
+  .rails { display: flex; flex-wrap: wrap; gap: .5rem; }
+  .rail { font: 500 .8rem/1 var(--mono); padding: .5rem .7rem; border-radius: 6px; border: 1px solid var(--rule); color: var(--muted); }
+  .rail b { color: var(--ink); font-weight: 500; }
+
+  .facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 1rem 2rem; margin: 0; padding: 0; list-style: none; }
+  .facts li { display: grid; gap: .2rem; padding-top: .9rem; border-top: 1px solid var(--rule); }
+  .facts strong { font-weight: 600; }
+  .facts p { color: var(--muted); font-size: .97rem; }
+  .note { font: 400 .85rem/1.5 var(--mono); color: var(--muted); }
+
+  /* Work entries */
+  .work { display: grid; gap: 0; }
+  .entry { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: .5rem 1.5rem; padding-block: 1.6rem; border-top: 1px solid var(--rule); }
+  .entry:first-child { border-top: 0; padding-top: 0; }
+  .entry h3 { font-size: 1.45rem; font-weight: 700; }
+  .entry .kind { font: 400 .85rem/1.4 var(--mono); color: var(--muted); margin-top: .2rem; }
+  .entry .body { grid-column: 1 / -1; display: grid; gap: .6rem; max-width: 66ch; }
+  .entry .go { align-self: start; font: 500 .85rem/1 var(--mono); white-space: nowrap; text-decoration: none;
+    padding: .55rem .8rem; border: 1px solid var(--accent); border-radius: 999px; }
+  .entry .go:hover { background: var(--accent); color: var(--paper); }
+  .entry .go.none { border-color: var(--rule); color: var(--muted); }
+  @media (max-width: 520px) { .entry { grid-template-columns: minmax(0, 1fr); } .entry .go { justify-self: start; } }
+  .tags { display: flex; flex-wrap: wrap; gap: .4rem; }
+  .tags span { font: 400 .78rem/1 var(--mono); padding: .4rem .55rem; border-radius: 5px; background: var(--chip); color: var(--ink); }
+  .stat { font: 500 .85rem/1.4 var(--mono); color: var(--accent); }
+
+  /* Process */
+  .process { counter-reset: s; display: grid; gap: .9rem; margin: 0; padding: 0; list-style: none; }
+  .process li { counter-increment: s; display: grid; grid-template-columns: 2.25rem minmax(0, 1fr); gap: .8rem; align-items: baseline; }
+  .process li::before { content: counter(s, decimal-leading-zero); font: 500 .85rem/1 var(--mono); color: var(--accent); }
+  .process strong { font-weight: 600; }
+  .process p { color: var(--muted); }
+
+  /* Side projects */
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(14.5rem, 1fr)); gap: 1rem; }
+  .proj { display: grid; gap: .45rem; align-content: start; padding: 1.1rem; border: 1px solid var(--rule); border-radius: 12px;
+    text-decoration: none; color: var(--ink); background: var(--card); }
+  .proj:hover { border-color: var(--accent); }
+  .proj b { font: 500 .95rem/1.3 var(--mono); color: var(--accent); }
+  .proj p { font-size: .95rem; color: var(--muted); }
+
+  .skills { display: grid; gap: .8rem; }
+  .skills div { display: grid; grid-template-columns: 9rem minmax(0, 1fr); gap: 1rem; }
+  @media (max-width: 520px) { .skills div { grid-template-columns: minmax(0, 1fr); gap: .2rem; } }
+
+  footer { padding-top: 3rem; display: grid; gap: 1.2rem; }
+  footer h2 { max-width: 20ch; }
+  .toast { font: 400 .8rem/1 var(--mono); color: var(--accent); min-height: 1em; }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .hero > * { animation: rise .6s ease-out both; }
+    .hero > *:nth-child(2) { animation-delay: .06s; } .hero > *:nth-child(3) { animation-delay: .12s; }
+    .hero > *:nth-child(4) { animation-delay: .18s; } .hero > *:nth-child(5) { animation-delay: .24s; }
+    @keyframes rise { from { transform: translateY(8px); } to { transform: none; } }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <p class="role">Senior Full-Stack Engineer · AI products</p>
+    <h1>Davidson<br>Akra</h1>
+    <p class="thesis">I build AI features for <mark>real products</mark>, plus the guardrails that make them safe to run.</p>
+    <p class="intro">Six years shipping web, mobile and backend systems across e-commerce, public health, HR software and social apps.
+      I work mostly in TypeScript, Node.js, React and Next.js, and I own features from the data model to the screen.
+      Claude Code is my everyday development tool.</p>
+    <div class="links">
+      <a href="https://github.com/Davidson-09" target="_blank" rel="noopener">GitHub ↗</a>
+      <a href="https://www.linkedin.com/in/davidson-akra-10880a1b3/" target="_blank" rel="noopener">LinkedIn ↗</a>
+      <button class="copy" id="copy-email" type="button" aria-label="Copy email address"><span class="addr">davidsonakra@gmail.com</span><span aria-hidden="true">⧉</span></button>
+    </div>
+    <p class="toast" id="toast" aria-live="polite"></p>
+  </header>
+
+  <section id="featured">
+    <p class="label">Featured · McGrocer</p>
+    <div class="stack">
+      <h2>AI inside a grocery storefront</h2>
+      <p class="lede">McGrocer is a grocery e-commerce platform serving shoppers in the UK, Europe and beyond, with its storefront in five languages.
+        I build across the whole platform, and I lead its AI features. This is how the product recommendations work:</p>
+
+      <div class="pipe" role="img" aria-label="Recommendation flow: product page, candidate shortlist, AI model, allow-list guard, cache, shown to the shopper">
+        <div class="step"><b>Product page</b><span>shopper views an item</span></div>
+        <span class="arrow" aria-hidden="true">→</span>
+        <div class="step"><b>Shortlist</b><span>real products by cluster, then category</span></div>
+        <span class="arrow" aria-hidden="true">→</span>
+        <div class="step"><b>AI model</b><span>Claude, Gemini or OpenAI</span></div>
+        <span class="arrow" aria-hidden="true">→</span>
+        <div class="step guard"><b>Guard</b><span>drops anything not on the shortlist</span></div>
+        <span class="arrow" aria-hidden="true">→</span>
+        <div class="step"><b>Cache</b><span>warmed nightly, so no waiting</span></div>
+      </div>
+      <div class="rails" aria-label="Controls around every AI call">
+        <span class="rail"><b>Kill switches</b> · global, per feature, per language</span>
+        <span class="rail"><b>Spend cap</b> · daily limit per feature</span>
+        <span class="rail"><b>Model choice</b> · set by admins, no redeploy</span>
+      </div>
+
+      <ul class="facts">
+        <li><strong>AI translation pipeline</strong><p>Product copy translated into French, German, Norwegian and Arabic (right-to-left) on a job queue with retries, dead-lettering and alerts.</p></li>
+        <li><strong>Guardrails after a real incident</strong><p>A translation job once ran across 60,000 products with no off switch. I built switches that stop it instantly and clear the queue.</p></li>
+        <li><strong>One-tap checkout</strong><p>Apple Pay and Google Pay through Stripe, plus a direct PayPal integration. Payment is only captured after the ERP confirms the order.</p></li>
+        <li><strong>Catalogue at scale</strong><p>An admin import that loaded a 12,378-category product taxonomy with preview, apply and safe cutover.</p></li>
+        <li><strong>Privacy-first analytics</strong><p>First-party shopper analytics behind a GDPR consent gate, with export, erasure and an admin dashboard.</p></li>
+        <li><strong>Platform health</strong><p>Fixed slow admin queries that timed out, split Redis by workload, and added locks so background jobs never double-run.</p></li>
+      </ul>
+      <div class="links">
+        <a href="https://mcgrocer.com" target="_blank" rel="noopener">mcgrocer.com ↗</a>
+      </div>
+      <p class="note">The code is private. I'm happy to walk through the architecture on a call.</p>
+    </div>
+  </section>
+
+  <section id="work">
+    <p class="label">Selected work</p>
+    <div class="work">
+
+      <article class="entry">
+        <div><h3>StrongBridge MIS</h3><p class="kind">Multi-tenant HR &amp; OKR platform · web</p></div>
+        <a class="go" href="https://mis.strongbridgeitsolutions.com/" target="_blank" rel="noopener">Visit ↗</a>
+        <div class="body">
+          <p>I led the build of an HR platform used by organisations with 150+ staff each: OKRs, payroll, invoicing and leave management.
+            Each company's data is isolated at the database level with row-level security.</p>
+          <p class="stat">OKR creation and reporting time cut by 50%</p>
+          <div class="tags"><span>Next.js</span><span>TypeScript</span><span>NestJS</span><span>PostgreSQL</span><span>Docker</span><span>GitHub Actions</span></div>
+        </div>
+      </article>
+
+      <article class="entry">
+        <div><h3>Luupli</h3><p class="kind">Social app · iOS &amp; Android</p></div>
+        <a class="go" href="https://apps.apple.com/ng/app/luupli/id6463861554" target="_blank" rel="noopener">App Store ↗</a>
+        <div class="body">
+          <p>A social platform for creators, with live streaming, community lounges, weekly challenges and creator payouts.
+            I worked on the app, the feed and real-time notifications, set up crash and performance monitoring, and led releases to both stores.</p>
+          <p class="stat">4.4 ★ from 107 App Store ratings</p>
+          <div class="tags"><span>React Native</span><span>React</span><span>Redux Toolkit</span><span>Firebase</span></div>
+        </div>
+      </article>
+
+      <article class="entry">
+        <div><h3>Zellow</h3><p class="kind">Pan-African data &amp; rewards app · iOS &amp; Android</p></div>
+        <a class="go" href="https://apps.apple.com/ng/app/zellow/id6753960015" target="_blank" rel="noopener">App Store ↗</a>
+        <div class="body">
+          <p>People across Africa answer surveys anonymously and earn rewards. Organisations get anonymised insight for business and research decisions.
+            I built the mobile app, including secure reward transactions through the backend, and the CI/CD pipeline for releases.</p>
+          <div class="tags"><span>React Native</span><span>TypeScript</span><span>GitHub Actions</span></div>
+        </div>
+      </article>
+
+      <article class="entry">
+        <div><h3>Public health platforms</h3><p class="kind">Georgetown Global Health Nigeria · web &amp; mobile</p></div>
+        <span class="go none">Not public</span>
+        <div class="body">
+          <p>Systems for Nigerian public health programmes, including <strong>ANRIN</strong> (Accelerating Nutrition Results in Nigeria, World Bank–funded)
+            and <strong>NPHCDA EPM</strong> for the National Primary Health Care Development Agency.
+            Work covered beneficiary enrollment, medical record tracking, and a sync service that links the national OpenLMIS supply chain system to an ERP.</p>
+          <div class="tags"><span>OAuth2</span><span>REST integrations</span><span>Webhooks</span><span>Kotlin</span><span>Jetpack Compose</span><span>React Native</span></div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <section id="process">
+    <p class="label">How I work</p>
+    <div class="stack">
+      <h2>Claude Code, every day, with a process around it</h2>
+      <ol class="process">
+        <li><div><strong>Write the spec</strong><p>Each feature starts as a short proposal, design and task list.</p></div></li>
+        <li><div><strong>Tests first</strong><p>Claude Code writes failing tests, then the implementation that passes them.</p></div></li>
+        <li><div><strong>Parallel, isolated sessions</strong><p>Separate git worktrees, so several features move at once without colliding.</p></div></li>
+        <li><div><strong>AI review loop</strong><p>A review bot checks every pull request, and I work through its findings until it comes back clean.</p></div></li>
+        <li><div><strong>Try it for real</strong><p>After each deploy, I drive the actual flows on staging with browser automation and write up anything that breaks.</p></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="projects">
+    <p class="label">Side projects</p>
+    <div class="grid">
+      <a class="proj" href="https://github.com/Davidson-09/chatkt" target="_blank" rel="noopener"><b>chatkt ↗</b><p>A generative AI chat app for Android, built in Kotlin.</p></a>
+      <a class="proj" href="https://github.com/Davidson-09/replicate-demo-app" target="_blank" rel="noopener"><b>replicate-demo-app ↗</b><p>Image generation demo using the SDXL model on Replicate.</p></a>
+      <a class="proj" href="https://github.com/Davidson-09/anti-phish-extension" target="_blank" rel="noopener"><b>anti-phish-extension ↗</b><p>A browser extension that helps prevent phishing attacks.</p></a>
+      <a class="proj" href="https://github.com/Davidson-09/viralbase" target="_blank" rel="noopener"><b>viralbase ↗</b><p>An organic marketing tool for musicians.</p></a>
+    </div>
+  </section>
+
+  <section id="skills">
+    <p class="label">Toolkit</p>
+    <div class="skills">
+      <div><span class="label">AI</span><p>Claude Code, Claude API, Gemini, OpenAI, multi-provider model layers, output guards, token and cost tracking</p></div>
+      <div><span class="label">Backend</span><p>Node.js, TypeScript, NestJS, Express, Medusa, REST, GraphQL, job queues, webhooks, OAuth2</p></div>
+      <div><span class="label">Frontend</span><p>React, Next.js, Redux Toolkit, internationalisation including right-to-left</p></div>
+      <div><span class="label">Mobile</span><p>React Native, Expo, Kotlin, Jetpack Compose</p></div>
+      <div><span class="label">Data</span><p>PostgreSQL, Redis, MongoDB</p></div>
+      <div><span class="label">Infra</span><p>Docker, GitHub Actions, Google Cloud, AWS</p></div>
+    </div>
+  </section>
+
+  <footer>
+    <h2>Building something with AI? Let's talk.</h2>
+    <div class="links">
+      <a href="https://www.linkedin.com/in/davidson-akra-10880a1b3/" target="_blank" rel="noopener">LinkedIn ↗</a>
+      <a href="https://github.com/Davidson-09" target="_blank" rel="noopener">GitHub ↗</a>
+      <button class="copy" id="copy-email-2" type="button" aria-label="Copy email address"><span class="addr">davidsonakra@gmail.com</span><span aria-hidden="true">⧉</span></button>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+  (function () {
+    var toast = document.getElementById("toast");
+    function say(msg) { toast.textContent = msg; clearTimeout(say.t); say.t = setTimeout(function () { toast.textContent = ""; }, 2500); }
+    function selectText(el) { var r = document.createRange(); r.selectNodeContents(el); var s = window.getSelection(); s.removeAllRanges(); s.addRange(r); }
+    ["copy-email", "copy-email-2"].forEach(function (id) {
+      var btn = document.getElementById(id);
+      btn.addEventListener("click", function () {
+        var addr = btn.querySelector(".addr");
+        var text = addr.textContent;
+        var done = function () { say("Email copied"); };
+        var fallback = function () { selectText(addr); say("Email selected. Press Ctrl+C or ⌘C to copy."); };
+        try {
+          if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(text).then(done, fallback); }
+          else { fallback(); }
+        } catch (e) { fallback(); }
+      });
+    });
+  })();
+</script>
+</body>
+</html>
